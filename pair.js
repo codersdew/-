@@ -37,7 +37,7 @@ const {
 // 🚀 OPTIMIZATION: Preload static files to avoid blocking I/O during commands
 let _dewDocBuffer = null;
 try {
-    const docPath = path.join(__dirname, 'data', 'xion.pdf');
+    const docPath = path.join(__dirname, 'data', 'xion.docx');
     if (fs.existsSync(docPath)) _dewDocBuffer = fs.readFileSync(docPath);
 } catch(e) { console.error('Preload doc error', e); }
 
@@ -1316,7 +1316,6 @@ case 'setting': {
     const logo = currentConfig.logo || config.RCD_IMAGE_PATH;
 
     const text = `⚙️ *${botName} SETTINGS MENU* ⚙️
-____________________________________
 
 *➤ 𝐖𝙾𝚁𝙺 𝐓𝚈𝙿𝙴* 
 │ ➜ ${prefix}wtype public
@@ -1911,26 +1910,7 @@ break;
     case 'list':
 case 'pannel':
 case 'menu': {
-    const useButton = userConfig.BUTTON === 'true';
-    // React to the menu command
-    await socket.sendMessage(m.chat, {
-        react: {
-            text: '📜',
-            key: msg.key
-        }
-    });
-
-
-    // Build sections for button menu
-    const sections = [{
-        title: 'Select Category',
-        rows: Object.keys(commandsInfo).map(cat => ({
-            title: cat.toUpperCase(),
-            description: `View ${cat} commands`,
-            id: `${prefix}category ${cat}`
-        }))
-    }];
-
+    
     const ownerName = socket.user?.name || 'ERANDA BRO';
     const startTime = socketCreationTime.get(number) || Date.now();
     const uptime = Math.floor((Date.now() - startTime) / 1000);
@@ -1947,10 +1927,10 @@ case 'menu': {
 🤍 𝐇𝐄𝐋𝐋𝐎 𝐔𝐒𝐄𝐑
 ╭━──────────❖
 ┃ ♥ 𝐒𝐘𝐒𝐓𝐄𝐌 
-┃ 🤍 𝚁𝚄𝙽𝚃𝙸𝙼𝙴 : ${hours}h ${minutes}m ${seconds}s
-┃ 🤍 𝙿𝚁𝙴𝙵𝙸𝚇 : ${prefix}
-┃ 🤍 𝚅𝙴𝚁𝚂𝙸𝙾𝙽 :  ${version}
-┃ 🤍 𝙿𝙻𝙰𝚃𝙵𝙾𝚁𝙼 : 𝙷𝙴𝚁𝙾𝙺𝚄
+┃ 🤍 \`Uptime\` : ${hours}h ${minutes}m ${seconds}s
+┃ 🤍 \`prefix\` : ${prefix}
+┃ 🤍 \`version\` :  1V
+┃ 🤍 \`platform\` : SENASURU
 ╰━──────────❖
 ╭━━━━━━━━━━━━━╮
 ┃❖ ─̲͞  ♥ 𝙴𝚁𝙰𝙽𝙳𝙰🤍❖
@@ -2024,11 +2004,11 @@ case 'alive': {
     
 *│*📅 \`Date\` : ${date}      
 *│*🕒 \`Time\` : ${time}
-*♥ \`Owner\` : _*ERANDA*_
-*🤍 \`Prefix\` : ${prefix}
-*♥ \`Uptime\` : ${hours}h ${minutes}m ${seconds}s
+♥ \`Owner\` : _*ERANDA*_
+🤍 \`Prefix\` : ${prefix}
+♥ \`Uptime\` : ${hours}h ${minutes}m ${seconds}s
 
-
+join with us : https://chat.whatsapp.com/DyFG0oUMlDtI2g89Yg4vnJ?mode=gi_t
 ${footer}`;
     // ✅ Send reaction to the user's command message
     await socket.sendMessage(m.chat, {
