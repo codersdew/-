@@ -2024,10 +2024,9 @@ case 'alive': {
     
 *│*📅 \`Date\` : ${date}      
 *│*🕒 \`Time\` : ${time}
-*🧑‍💻 \`Owner\` : ${ownerName}
-*✒️ \`Prefix\` : ${prefix}
-*🧬 \`Version\` : ${version}
-*📟 \`Uptime\` : ${hours}h ${minutes}m ${seconds}s
+*♥ \`Owner\` : _*ERANDA*_
+*🤍 \`Prefix\` : ${prefix}
+*♥ \`Uptime\` : ${hours}h ${minutes}m ${seconds}s
 
 
 ${footer}`;
