@@ -5316,14 +5316,14 @@ case 'ping': {
     const start = Date.now();
 
     // Send a temporary message to measure delay
-    const tempMsg = await socket.sendMessage(m.chat, { text: ```Calculating...```' });
+    const tempMsg = await socket.sendMessage(m.chat, { text: '𝙿𝙸𝙽𝙶𝙸𝙽𝙶..' });
 
     const end = Date.now();
     const ping = end - start;
 
     // Edit the message to show the result
     await socket.sendMessage(m.chat, {
-        text: `─͟͟͞͞ එරන්ද📍 𝐌𝐃 𝐏𝐈𝐍𝐆 
+        text: `*─͟͟͞͞ එරන්ද📍 MD RESPONSING SPEED* 
         *PONG📍: ${ping} ms*`,
         edit: tempMsg.key
     });
@@ -6196,7 +6196,7 @@ socket.ev.on('creds.update', async () => {
 ┃💎 *ᴏᴡɴᴇʀ :* _*𝐃𝐂𝐓 || 𝐄𝐑𝐀𝐍𝐃𝐀*_
 ╰────────────────────╯
 ╭─❝ 𝘚𝘺𝘴𝘵𝘦𝘮 𝘪𝘴 𝘯𝘰𝘸 𝘖𝘯𝘭𝘪𝘯𝘦! ❞──╮
-> © _*𝐏𝐎𝐖𝐄𝐑𝐄𝐃 𝐁𝐘 𝐌𝐀𝐃𝐔*_
+> © _*𝐏𝐎𝐖𝐄𝐑𝐄𝐃 𝐁𝐘 𝐄𝐑𝐀𝐍𝐃𝐀*_
 > ©_*Use .menu Or .alive Cmd*_
 ╰──────────────────────╯`,
           );
