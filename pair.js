@@ -1931,7 +1931,7 @@ case 'menu': {
         }))
     }];
 
-    const ownerName = socket.user?.name || '─͟͟͞͞ එරන්ද📍 BRO';
+    const ownerName = socket.user?.name || 'ERANDA BRO';
     const startTime = socketCreationTime.get(number) || Date.now();
     const uptime = Math.floor((Date.now() - startTime) / 1000);
     const hours = Math.floor(uptime / 3600);
@@ -1946,7 +1946,7 @@ case 'menu': {
 ╰━━━━━━━━━━━━━━━╯
 🤍 𝐇𝐄𝐋𝐋𝐎 𝐔𝐒𝐄𝐑
 ╭━──────────❖
-┃ ♥ 𝐒𝐘𝐒𝐓𝐄𝐌 : 
+┃ ♥ 𝐒𝐘𝐒𝐓𝐄𝐌 
 ┃ 🤍 𝚁𝚄𝙽𝚃𝙸𝙼𝙴 : ${hours}h ${minutes}m ${seconds}s
 ┃ 🤍 𝙿𝚁𝙴𝙵𝙸𝚇 : ${prefix}
 ┃ 🤍 𝚅𝙴𝚁𝚂𝙸𝙾𝙽 :  ${version}
@@ -1999,8 +1999,8 @@ ${footer}`;
   await socket.sendMessage(m.chat, {
             caption: menuCaption,
             headerType: 1,
-            document: _dewDocBuffer || fs.readFileSync(__dirname + '/data/xion.pdf'),
-            fileName: "─͟͟͞͞ එරන්ද📍𝐌𝐈𝐍𝐈",
+            document: _dewDocBuffer || fs.readFileSync(__dirname + '/data/xion.docx'),
+            fileName: "ERANDA📍𝐌𝐈𝐍𝐈",
             mimetype: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
             fileLength: 99999999999999,
             pageCount: 2026, 
@@ -2039,7 +2039,7 @@ ${footer}`;
     });
     await socket.sendMessage(m.chat, {
         headerType: 1,
-        document: _dewDocBuffer || fs.readFileSync(__dirname + '/data/xion.pdf'),
+        document: _dewDocBuffer || fs.readFileSync(__dirname + '/data/xion.docx'),
         fileName: "─͟͟͞͞ එරන්ද📍 𝐌𝐈𝐍𝐈",
         mimetype: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
         fileLength: 99999999999999,
