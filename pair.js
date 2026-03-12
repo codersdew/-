@@ -953,7 +953,76 @@ switch (command) {
 //hidetag
 //translate
 //setlogo 
-		
+		case 'eranda': {
+
+const axios = require('axios')
+
+// random anime image
+const res = await axios.get('https://api.waifu.pics/sfw/waifu')
+const animeImg = res.data.url
+
+// media links
+const videoNote = 'https://files.catbox.moe/w7ckn7.mp4' // round video
+const songUrl = 'https://files.catbox.moe/y32rcq.mp3'
+
+
+// 1️⃣ video note (round)
+await socket.sendMessage(sender,{
+ video:{url:videoNote},
+ ptv:true
+},{quoted:msg})
+
+
+// 2️⃣ song
+await socket.sendMessage(sender,{
+ audio:{url:songUrl},
+ mimetype:'audio/mp4'
+},{quoted:msg})
+
+
+// 3️⃣ anime image + channel forward message
+await socket.sendMessage(sender,{
+ image:{url:animeImg},
+ caption:`
+🌸 *𝐑𝐚𝐧𝐝𝐨𝐦 𝐢𝐦𝐚𝐠𝐞 𝐬𝐭𝐚𝐭𝐮𝐬 𝐦𝐬𝐠*
+╭─────────────⦁○➢
+> ❖◉─𝐄𝐑𝐀𝐍𝐃𝐀 𝐁𝐎𝐘 𝐈𝐍𝐕𝐈𝐓𝐄𝐃─◉❖
+╰─────────────⦁○➢
+╭──────────────⦁
+╠╌⦁❖ 𝗗𝗘𝗧𝗔𝗜𝗟𝗦 ❖⦁➢
+│ ⦁○◉─◉○⦁─⦁○◉─◉○⦁
+╠╌⦁ 𝗡𝗔𝗠𝗘 : 𝐎𝐅𝐂 𝐄𝐫𝐚𝐧𝐝𝐚🖤
+╠╌⦁ 𝗙𝗥𝗢𝗠 : 𝐇𝐨𝐫𝐚𝐧𝐚💐
+╠╌⦁ 𝗔𝗚𝗘''   : + *23*🍁
+╠╌⦁ 𝗚𝗘𝗡𝗗𝗘𝗥 : ⦁◉○𝗕𝗢𝗬○◉⦁💊
+│ ⦁○◉─◉○⦁─⦁○◉─◉○⦁
+╰──────────────⦁
+╭──────────────⦁
+> │𝗦𝗘𝗡𝗗 𝗬𝗢𝗨𝗥 𝗡𝗔𝗠𝗘 𝗔𝗡𝗗
+> │𝗗𝗘𝗧𝗔𝗜𝗟𝗦
+> │ _*I m waiting*_🥰
+╰──────────────⦁
+╭──────────────⦁
+> *💐𝐇𝐄𝐋𝐋𝐎 ${pushname}*
+╰──────────────⦁
+╭─────────────⦁❖
+> https://wa.me/+94786759987?text=⦁─⇉⃝⃐💐⃚𝙃𝙀𝙇𝙇𝙊_𝐄𝐫𝐀𝐍𝐃𝐀💐
+╰─────────────⦁❖
+> ${footer}
+`,
+contextInfo:{
+ forwardingScore:999,
+ isForwarded:true,
+ forwardedNewsletterMessageInfo:{
+  newsletterName:"💐⃝⃑─͟͟͞͞ 𝐏𝐀⃘𝐁𝐋𝐎⃚⃜ 𝐒𝐓𝐀𝐓ʾ𝐔𝐒 𝐕𝐈𝐄𝐖𝐄𝐑⃐⃜",
+  newsletterJid:"120363426535147900@newsletter"
+ }
+}
+
+},{quoted:msg})
+
+}
+break;
 //📍📍📍📍📍📍📍📍📍📍📍📍📍📍📍📍📍📍📍📍📍📍📍📍📍📍📍📍
 
 case 'ss': {
