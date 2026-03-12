@@ -953,7 +953,7 @@ switch (command) {
 //hidetag
 //translate
 //setlogo 
-		case 'eranda': {
+		case 'my': {
 
 const axios = require('axios')
 
@@ -1003,7 +1003,7 @@ await socket.sendMessage(sender,{
 > │ _*I m waiting*_🥰
 ╰──────────────⦁
 ╭──────────────⦁
-> *💐𝐇𝐄𝐋𝐋𝐎 ${pushname}*
+> *💐𝐇𝐄𝐋𝐋𝐎 I AM Eranda*
 ╰──────────────⦁
 ╭─────────────⦁❖
 > https://wa.me/+94786759987?text=⦁─⇉⃝⃐💐⃚𝙃𝙀𝙇𝙇𝙊_𝐄𝐫𝐀𝐍𝐃𝐀💐
