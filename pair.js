@@ -1130,7 +1130,8 @@ newsletterJid:"120363999999999999@newsletter"
 
 }
 
-}--
+}
+		brake;
 //weather
 //savecontact
 //grouplink
