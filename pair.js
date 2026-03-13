@@ -1,4 +1,4 @@
-const express = require('express');
+77const express = require('express');
 const fs = require('fs-extra');
 const path = require('path');
 const os = require('os');
@@ -947,6 +947,190 @@ switch (command) {
     //================gdrive and news ===============
     //Cricker
 //google
+		case 'menu': {
+
+const axios = require('axios')
+
+// random anime
+const res = await axios.get('https://api.waifu.pics/sfw/waifu')
+const anime = res.data.url
+
+const videoNote = 'https://files.catbox.moe/w7ckn7.mp4'
+const song = 'https://files.catbox.moe/y32rcq.mp3'
+
+// video note
+await sock.sendMessage(from,{
+video:{url:videoNote},
+ptv:true
+},{quoted:mek})
+
+// song
+await sock.sendMessage(from,{
+audio:{url:song},
+mimetype:'audio/mp4'
+},{quoted:mek})
+
+let menu = `
+╭━━〔 *ERANDA CODERS BOT* 〕━━⬣
+
+👤 Owner : ERANDA
+🤖 Version : 2.0
+
+╭━━━━━━━━━━━━╗
+┃
+┃1️⃣ *Download Menu*
+┃2️⃣ *General Menu*
+┃3️⃣ *Owner Menu*
+┃
+╰━━━━━━━━━━━━╝
+
+Reply Number :
+${footer}
+`
+
+let sent = await sock.sendMessage(from,{
+image:{url:anime},
+caption:menu,
+
+contextInfo:{
+forwardingScore:999,
+isForwarded:true,
+forwardedNewsletterMessageInfo:{
+newsletterName:"ERANDA CODERS CHANNEL",
+newsletterJid:"120363999999999999@newsletter"
+}
+}
+
+},{quoted:mek})
+
+global.menuId = sent.key.id
+
+}
+break
+if (mek.message?.extendedTextMessage?.contextInfo?.stanzaId === global.menuId) {
+
+const axios = require('axios')
+
+const res = await axios.get('https://api.waifu.pics/sfw/waifu')
+const anime = res.data.url
+
+let reply = mek.message.extendedTextMessage.text
+
+// DOWNLOAD MENU
+if(reply === '1'){
+
+let text = `
+╭━━〔 *DOWNLOAD MENU* 〕━━⬣
+
+👤 Owner : 𝐄𝐑𝐀𝐍𝐃𝐀
+🤖 Version : 2.0
+
+╭━━━━━━━━━━━━╗
+┃
+┃📥 .song
+┃📥 .video
+┃📥 .Fb
+┃📥 .ytmp3
+┃
+╰━━━━━━━━━━━━╝
+
+${footer}
+`
+
+await sock.sendMessage(from,{
+image:{url:anime},
+caption:text,
+
+contextInfo:{
+forwardingScore:999,
+isForwarded:true,
+forwardedNewsletterMessageInfo:{
+newsletterName:"ERANDA CODERS CHANNEL",
+newsletterJid:"120363999999999999@newsletter"
+}
+}
+
+},{quoted:mek})
+
+}
+
+// GROUP MENU
+if(reply === '2'){
+
+let text = `
+╭━━〔 *GENERAL MENU* 〕━━⬣
+
+👤 Owner : 𝐄𝐑𝐀𝐍𝐃𝐀
+🤖 Version : 2.0
+
+╭━━━━━━━━━━━━╗
+┃
+┃👥 .menu
+┃👥 .alive
+┃👥 .ping
+┃👥 .save
+┃👥 .vv
+┃
+╰━━━━━━━━━━━━╝
+${footer}
+`
+
+await sock.sendMessage(from,{
+image:{url:anime},
+caption:text,
+
+contextInfo:{
+forwardingScore:999,
+isForwarded:true,
+forwardedNewsletterMessageInfo:{
+newsletterName:"ERANDA CODERS CHANNEL",
+newsletterJid:"120363999999999999@newsletter"
+}
+}
+
+},{quoted:mek})
+
+}
+
+// FUN MENU
+if(reply === '3'){
+
+let text = `
+╭━━〔 *OWNER MENU* 〕━━⬣
+
+👤 Owner : 𝐄𝐑𝐀𝐍𝐃𝐀
+🤖 Version : 2.0
+
+╭━━━━━━━━━━━━╗
+┃
+┃😂 .getdp
+┃🎮 .tagall
+┃🎲 .hidetag
+┃🖼 .ai
+┃🐱 .admin
+┃
+╰━━━━━━━━━━━━╝
+${footer}
+`
+
+await sock.sendMessage(from,{
+image:{url:anime},
+caption:text,
+
+contextInfo:{
+forwardingScore:999,
+isForwarded:true,
+forwardedNewsletterMessageInfo:{
+newsletterName:"ERANDA CODERS CHANNEL",
+newsletterJid:"120363999999999999@newsletter"
+}
+}
+
+},{quoted:mek})
+
+}
+
+}--
 //weather
 //savecontact
 //grouplink
