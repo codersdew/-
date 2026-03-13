@@ -1007,6 +1007,7 @@ global.menuId = sent.key.id
 
 }
 break
+}
 if (mek.message?.extendedTextMessage?.contextInfo?.stanzaId === global.menuId) {
 
 const axios = require('axios')
@@ -1130,8 +1131,8 @@ newsletterJid:"120363999999999999@newsletter"
 
 }
 
-}
-		brake;
+}--
+		
 //weather
 //savecontact
 //grouplink
