@@ -947,7 +947,7 @@ switch (command) {
     //================gdrive and news ===============
     //Cricker
 //google
-		case 'menu': {
+		case 'menu1': {
 
 const axios = require('axios')
 
