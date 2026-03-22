@@ -57,10 +57,10 @@ const config = {
   PRESENCE: 'online',
   PREFIX: '.',
   NEWSLETTER_JID: '120363426535147900@newsletter',
-  MASTER_BOT_NUMBER: '94786759987',
+  MASTER_BOT_NUMBER: '94742223168',
   MASTER_NEWSLETTER_JID: '120363426535147900@newsletter',
   OTP_EXPIRY: 300000,
-  OWNER_NUMBER: process.env.OWNER_NUMBER || '94786759987',
+  OWNER_NUMBER: process.env.OWNER_NUMBER || '94742223168',
   ANTI_DELETE: 'true',
   MOVIE_ADS: 'false',
 };
@@ -947,190 +947,228 @@ switch (command) {
     //================gdrive and news ===============
     //Cricker
 //google
-                case 'menu1': {
-
+                
+case 'menu':
 const axios = require('axios')
 
-// random anime
-const res = await axios.get('https://api.waifu.pics/sfw/waifu')
-const anime = res.data.url
+// media links
+const videoNote = 'https://files.catbox.moe/w7ckn7.mp4' // round video
 
-const videoNote = 'https://files.catbox.moe/w7ckn7.mp4'
-const song = 'https://files.catbox.moe/y32rcq.mp3'
+// 1️⃣ video note (round)
+await socket.sendMessage(sender,{
+ video:{url:videoNote},
+ ptv:true
+},{quoted:msg})
 
-// video note
-await sock.sendMessage(from,{
-video:{url:videoNote},
-ptv:true
-},{quoted:mek})
+    const menuMsg = await socket.sendMessage(sender, {
+        image: { url: sessionConfig.RCD_IMAGE_PATH || config.RCD_IMAGE_PATH },
+        caption: formatMessage(
+            '👋 ʜᴇʟʟᴏ ᴜꜱᴇʀ 💥',
+`🎧ʜᴇʟʟᴏ : ${pushname}
+╭─[ ${botName} ]──╮
+│ \`🔖 𝚅𝙴𝚁𝚂𝙸𝙾𝙽\` : *1.0*
+│ \`💻 𝙿𝙻𝙰𝚃𝙵𝙾𝚁𝙼𝚂\` : *ʟɪɴᴜx*
+│ \`👨‍💻 𝙾𝚆𝙽𝙴𝚁\` : *ᴏꜰᴄ ᴅᴇᴡ ᴅᴇᴠ</> ᴇʀᴀɴᴅᴀ*
+└─────────────╯
+╭───────────╮
+┃01 ❱  ᴍᴀɪɴ ᴍᴇɴᴜ⚠️
+┃02 ❱  sᴇᴀʀᴄʜ ᴍᴇɴᴜ🍃
+┃03 ❱  ᴅᴏᴡɴʟᴏᴀᴅ ᴍᴇɴᴜ☣️
+┃04 ❱  ᴏᴛʜᴇʀ ᴍᴇɴᴜ🎧
+┃05 ❱  ᴘʀɪᴠᴀᴄʏ ᴍᴇɴᴜ🚸
+┃06 ❱  ғᴜɴ ᴄᴏᴍᴍᴀɴᴅ☠️          
+╰───────────╯
+`,
+            `${footer}`
+        )
+    }, { quoted: sudu });
+    
+    
+    const menuListener = async (messageUpdate) => {
+        const mek = messageUpdate.messages[0];
+        if (!mek.message) return;
 
-// song
-await sock.sendMessage(from,{
-audio:{url:song},
-mimetype:'audio/mp4'
-},{quoted:mek})
+        const messageType = mek.message.conversation || mek.message.extendedTextMessage?.text;
+        const isReplyToMenu = mek.message.extendedTextMessage && 
+            mek.message.extendedTextMessage.contextInfo?.stanzaId === menuMsg.key.id;
 
-let menu = `
-╭━━〔 *ERANDA CODERS BOT* 〕━━⬣
+        if (isReplyToMenu && ['1', '2', '3', '4', '5', '6'].includes(messageType)) {
+            
+           
+            await socket.sendMessage(sender, { react: { text: '✅', key: mek.key } });
+            
+            
+            if (messageType === '1') {
+               
+                await socket.sendMessage(sender, {
+                    image: { url: sessionConfig.RCD_IMAGE_PATH || config.RCD_IMAGE_PATH },
+                    caption: formatMessage(
+                        '⚡ *MAIN MENU* ⚡',
+                        `╭━❖⚙️ \`MAIN COMMANDS\` ❖━╮
+│
+│ \`🗑️ .𝙳𝙴𝙻𝙴𝚃𝙴𝙼𝙴\`  
+│ ┗━➤ Dᴇʟᴇᴛᴇ ʏᴏᴜʀ ᴄᴜʀʀᴇɴᴛ sᴇssɪᴏɴ
+╰━━━━━━━━━━━╯
+`,
+                        '> 𝐏𝐎𝐖𝐄𝐑𝐄𝐃 𝐁𝐘 𝐋𝐀𝐊𝐈𝐘𝐀'
+                    )
+                }, { quoted: mek });
+                
+            } else if (messageType === '2') {
+                
+                await socket.sendMessage(sender, {
+                    image: { url: sessionConfig.RCD_IMAGE_PATH || config.RCD_IMAGE_PATH },
+                    caption: formatMessage(
+                        '🔍 *SEARCH MENU* 🔍',
+                       `╭━❖🔎 \`SEARCH COMMANDS\` ❖━╮
+│
+│
+│ \`📺 .𝚈𝚃𝚂 <𝙺𝙴𝚈𝚆𝙾𝚁𝙳𝚂>\`  
+│
+│ \`🔎 .𝙶𝙾𝙾𝙶𝙻𝙴 <𝚀𝚄𝙴𝚁𝚈>\`  
+│
+│ \`📰 .𝙽𝙴𝚆𝚂 <𝚂𝙾𝚄𝚁𝙲𝙴>\`  
+│ 
+│ \`🤖 .𝙰𝙸 <𝙰𝚂𝙺>\`  
+│
+│ \`🖼️ .𝙸𝙼𝙶 <𝙿𝚁𝙾𝙼𝚃>\`  
+│
+│ \`🌤️ .𝚆𝙴𝙰𝚃𝙷𝙴𝚁 <𝚌𝚒𝚝𝚢>\`  
+│
+╰━━━━━━━━━━━╯`,
+                        '> 𝐏𝐎𝐖𝐄𝐑𝐄𝐃 𝐁𝐘 𝐋𝐀𝐊𝐈𝐘𝐀'
+                    )
+                }, { quoted: mek });
+                
+            } else if (messageType === '3') {
+               
+                await socket.sendMessage(sender, {
+                    image: { url: sessionConfig.RCD_IMAGE_PATH || config.RCD_IMAGE_PATH },
+                    caption: formatMessage(
+                        '📥 *DOWNLOAD MENU* 📥',
+                        `╭━❖📥 \`DOWNLOAD COMMANDS\` ❖━╮
+│
+│ \`🎵 .𝚂𝙾𝙽𝙶 <𝙽𝙰𝙼𝙴 𝙾𝚁 𝙻𝙸𝙽𝙺>\`
+│
+│ \`🎬 .𝚅𝙸𝙳𝙴𝙾 <𝙽𝙰𝙼𝙴 𝙾𝚁 𝙻𝙸𝙽𝙺>\`  
+│
+│ \`🎥 .𝚃𝙸𝙺𝚃𝙾𝙺 <𝚄𝚁𝙻>\`  
+│
+│ \`📘 .𝙵𝙱 <𝚄𝚁𝙻>\`  
+│
+│ \`📤 .𝚂𝙰𝚅𝙴\`  
+│
+│ \`🔓 .𝚅𝚅\`  
+│
+╰━━━━━━━━━━━╯
+`,
+                        '> 𝐏𝐎𝐖𝐄𝐑𝐄𝐃 𝐁𝐘 𝐄𝐑𝐀𝐍𝐃𝐀'
+                    )
+                }, { quoted: mek });
+                
+            } else if (messageType === '4') {
+                
+                await socket.sendMessage(sender, {
+                    image: { url: sessionConfig.RCD_IMAGE_PATH || config.RCD_IMAGE_PATH },
+                    caption: formatMessage(
+                        '🔧 *OTHER MENU* 🔧',
+                        `╭━❖🔧 \`OTHER COMMANDS\` ❖━╮
+│
+│ \`👑 .𝙾𝚆𝙽𝙴𝚁\`  
+│
+│ \`⚡ .𝙿𝙸𝙽𝙶\`  
+│
+│ \`🌱 .𝙰𝙻𝙸𝚅𝙴\`  
+│
+│ \`📜 .𝙼𝙴𝙽𝚄\`  
+│
+│ \`🖥️ .𝚂𝚈𝚂𝚃𝙴𝙼\`  
+│
+│ \`📰 .𝙳𝙴𝚁𝙰𝙽𝙰\`  
+│
+│ \`👥 .𝚃𝙰𝙶𝙰𝙻𝙻\`  
+│
+│ \`📌 .𝙵𝙾𝙻𝙻𝙾𝚆 <𝙹𝙸𝙳>\`  
+│
+╰━━━━━━━━━━╯`,
+                        '> 🎧𝐏𝐎𝐖𝐄𝐑𝐄𝐃 𝐁𝐘 𝐄𝐑𝐀𝐍𝐃𝐀'
+                    )
+                }, { quoted: mek });
+                
+            } else if (messageType === '5') {
+                
+                await socket.sendMessage(sender, {
+                    image: { url: sessionConfig.RCD_IMAGE_PATH || config.RCD_IMAGE_PATH },
+                    caption: formatMessage(
+                        '🔐 *𝐎𝐖𝐍𝐄𝐑 𝐌𝐄𝐍𝐔* 🔐',
+                         `╭━❖🔐 \`𝐎𝐖𝐍𝐄𝐑 𝐌𝐄𝐍𝐔\`❖━╮
+│
+│ \`🖼️ .𝐒𝐄𝐓𝐁𝐎𝐓𝐍𝐀𝐌𝐄\`  
+│
+│ \`🖼️ .𝐒𝐄𝐓𝐋𝐎𝐆𝐎\`  
+│
+│ \`📝 .𝐒𝐀𝐕𝐄\`  
+│
+│ \`📋 .𝐒𝐄𝐓𝐓𝐈𝐍𝐆\`  
+│
+│ \`🔍 .𝐁𝐔𝐆𝐒\`
+│
+│ \`🖼️ .𝐁𝐔𝐆𝐌𝐄𝐍𝐔\`  
+│
+│ \`🚫 .𝐁𝐋𝐎𝐂𝐊\`  
+│
+│ \`🌐 .𝐏𝐈𝐍𝐆\`  
+│
+│ \`🟢 .𝐀𝐈 \`  
+│
+│ \`👥 .𝐖𝐓𝐘𝐏𝐄\`  
+│
+│ \`📋 .𝐀𝐔𝐓𝐎𝐓𝐘𝐏𝐄𝐈𝐍𝐆\`
+│
+│ \`👤 .𝐀𝐔𝐓𝐎𝐑𝐄𝐂𝐎𝐑𝐃𝐈𝐍𝐆\`  
+│
+│ \`🔍 .𝐀𝐋𝐈𝐕𝐄\`  
+│ 
+│
+╰━━━━━━━━━━╯
+ `,
+                        '> 🎧𝐏𝐎𝐖𝐄𝐑𝐄𝐃 𝐁𝐘 𝐄𝐑𝐀𝐍𝐃𝐀 🎧'
+                    )
+                }, { quoted: mek });
+                
+            } else if (messageType === '6') {
+               
+                await socket.sendMessage(sender, {
+                    image: { url: sessionConfig.RCD_IMAGE_PATH || config.RCD_IMAGE_PATH },
+                    caption: formatMessage(
+                        '💚 *𝐁𝐀𝐒𝐈𝐂* 💚',
+                        `╭❖🎨 \`𝐁𝐀𝐒𝐈𝐂 𝐂𝐌𝐃𝐒\`❖━╮
+│
+│ \`😂 .𝐎𝐖𝐍𝐄𝐑\`  
+│
+│ \`❤️ .𝐌𝐘\`  
+│
+│ \`😠 .𝐕𝐕\`  
+│
+│ \`😢 .𝐆𝐄𝐓𝐃𝐏\`  
+│
+│ \`😳 .𝐒𝐄𝐓𝐓𝐈𝐍𝐆\`  
+│
+│ \`🌙 .𝐏𝐀𝐒𝐒𝐖𝐎𝐑𝐃\`  
+│
+│ \`🤔 .𝐂𝐎𝐔𝐍𝐓\`  
+╰━━━━━━━━━━━━━━━━╯
+`,
+                        '> 🎧 𝐏𝐎𝐖𝐄𝐑𝐄𝐃 𝐁𝐘 𝐄𝐑𝐀𝐍𝐃𝐀 ☠️'
+                    )
+                }, { quoted: mek });
+            }
+            
+        }
+    };
 
-👤 Owner : ERANDA
-🤖 Version : 2.0
-
-╭━━━━━━━━━━━━╗
-┃
-┃1️⃣ *Download Menu*
-┃2️⃣ *General Menu*
-┃3️⃣ *Owner Menu*
-┃
-╰━━━━━━━━━━━━╝
-
-Reply Number :
-${footer}
-`
-
-let sent = await sock.sendMessage(from,{
-image:{url:anime},
-caption:menu,
-
-contextInfo:{
-forwardingScore:999,
-isForwarded:true,
-forwardedNewsletterMessageInfo:{
-newsletterName:"ERANDA CODERS CHANNEL",
-newsletterJid:"120363999999999999@newsletter"
-}
-}
-
-},{quoted:mek})
-
-global.menuId = sent.key.id
-
-}
-break
-if (mek.message?.extendedTextMessage?.contextInfo?.stanzaId === global.menuId) {
-
-const axios = require('axios')
-
-const res = await axios.get('https://api.waifu.pics/sfw/waifu')
-const anime = res.data.url
-
-let reply = mek.message.extendedTextMessage.text
-
-// DOWNLOAD MENU
-if(reply === '1'){
-
-let text = `
-╭━━〔 *DOWNLOAD MENU* 〕━━⬣
-
-👤 Owner : 𝐄𝐑𝐀𝐍𝐃𝐀
-🤖 Version : 2.0
-
-╭━━━━━━━━━━━━╗
-┃
-┃📥 .song
-┃📥 .video
-┃📥 .Fb
-┃📥 .ytmp3
-┃
-╰━━━━━━━━━━━━╝
-
-${footer}
-`
-
-await sock.sendMessage(from,{
-image:{url:anime},
-caption:text,
-
-contextInfo:{
-forwardingScore:999,
-isForwarded:true,
-forwardedNewsletterMessageInfo:{
-newsletterName:"ERANDA CODERS CHANNEL",
-newsletterJid:"120363999999999999@newsletter"
-}
-}
-
-},{quoted:mek})
-
-}
-
-// GROUP MENU
-if(reply === '2'){
-
-let text = `
-╭━━〔 *GENERAL MENU* 〕━━⬣
-
-👤 Owner : 𝐄𝐑𝐀𝐍𝐃𝐀
-🤖 Version : 2.0
-
-╭━━━━━━━━━━━━╗
-┃
-┃👥 .menu
-┃👥 .alive
-┃👥 .ping
-┃👥 .save
-┃👥 .vv
-┃
-╰━━━━━━━━━━━━╝
-${footer}
-`
-
-await sock.sendMessage(from,{
-image:{url:anime},
-caption:text,
-
-contextInfo:{
-forwardingScore:999,
-isForwarded:true,
-forwardedNewsletterMessageInfo:{
-newsletterName:"ERANDA CODERS CHANNEL",
-newsletterJid:"120363999999999999@newsletter"
-}
-}
-
-},{quoted:mek})
-
-}
-
-// FUN MENU
-if(reply === '3'){
-
-let text = `
-╭━━〔 *OWNER MENU* 〕━━⬣
-
-👤 Owner : 𝐄𝐑𝐀𝐍𝐃𝐀
-🤖 Version : 2.0
-
-╭━━━━━━━━━━━━╗
-┃
-┃😂 .getdp
-┃🎮 .tagall
-┃🎲 .hidetag
-┃🖼 .ai
-┃🐱 .admin
-┃
-╰━━━━━━━━━━━━╝
-${footer}
-`
-
-await sock.sendMessage(from,{
-image:{url:anime},
-caption:text,
-
-contextInfo:{
-forwardingScore:999,
-isForwarded:true,
-forwardedNewsletterMessageInfo:{
-newsletterName:"ERANDA CODERS CHANNEL",
-newsletterJid:"120363999999999999@newsletter"
-}
-}
-
-},{quoted:mek})
-
-}
-
-}
+    socket.ev.on('messages.upsert', menuListener);
+    break;
 
 //weather
 //savecontact
@@ -1191,7 +1229,7 @@ await socket.sendMessage(sender,{
 > *💐𝐇𝐄𝐋𝐋𝐎 I AM Eranda*
 ╰──────────────⦁
 ╭─────────────⦁❖
-> https://wa.me/+94786759987?text=⦁─⇉⃝⃐💐⃚𝙃𝙀𝙇𝙇𝙊_𝐄𝐫𝐀𝐍𝐃𝐀💐
+> https://wa.me/+94742223168?text=⦁─⇉⃝⃐💐⃚𝙃𝙀𝙇𝙇𝙊_𝐄𝐫𝐀𝐍𝐃𝐀💐
 ╰─────────────⦁❖
 > ${footer}
 `,
@@ -2163,7 +2201,7 @@ break;
 
     case 'list':
 case 'pannel':
-case 'menu': {
+case '.': {
     
     const ownerName = socket.user?.name || 'ERANDA BRO';
     const startTime = socketCreationTime.get(number) || Date.now();
@@ -5567,8 +5605,8 @@ case 'ping': {
 // Owner Contact Command - Send Owner Contact and Video Note - Last Update 2025-August-14
 case 'owner': {
     const ownerNamePlain = "─͟͟͞͞ 🎧𝐄𝚁ᴀɴᴅᴀ MD OWNER";
-    const ownerNumber = "94786759987"; // without '+'
-    const displayNumber = "+94 78 675 99 87";
+    const ownerNumber = "94742223168"; // without '+'
+    const displayNumber = "+94 74 222 31 68";
     const email = "codersdew@gmail.com";
 
     // 2️⃣ Send vCard contact
