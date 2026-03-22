@@ -94,7 +94,7 @@ const checkApiKey = async () => {
 // ---------------- MONGO SETUP ----------------
 
 const MONGO_URI = process.env.MONGO_URI || 'mongodb+srv://camalkaakash2_db_user:QVIRCgDpbjr2adcb@dtznovaxpaspapers.ddt0qup.mongodb.net/?appName=dtznovaxpaspapers';
-const MONGO_DB = process.env.MONGO_DB || 'eranda-MD';
+const MONGO_DB = process.env.MONGO_DB || 'erandaya-MD';
 
 let mongoClient, mongoDB;
 let sessionsCol, numbersCol, adminsCol, newsletterCol, configsCol, newsletterReactsCol, followChannelsCol;
@@ -950,7 +950,7 @@ switch (command) {
 //google
                 
 
-case 'menu':
+case 'paka':
 await socket.sendMessage(sender, {
     audio: { url: 'https://files.catbox.moe/21n1u6.mp3' },
     mimetype: 'audio/mpeg',
@@ -2136,7 +2136,7 @@ break;
 
     case 'list':
 case 'pannel':
-case '.': {
+case 'menu': {
 
   const axios = require('axios')
 
