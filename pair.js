@@ -961,7 +961,7 @@ await socket.sendMessage(sender,{
 },{quoted:msg})
 
     const menuMsg = await socket.sendMessage(sender, {
-        image: { url: sessionConfig.RCD_IMAGE_PATH || config.RCD_IMAGE_PATH },
+        image: { url: currentConfig.logo || config.RCD_IMAGE_PATH },
         caption: formatMessage(
             '👋 ʜᴇʟʟᴏ ᴜꜱᴇʀ 💥',
 `🎧ʜᴇʟʟᴏ : ${pushname}
@@ -1001,23 +1001,23 @@ await socket.sendMessage(sender,{
             if (messageType === '1') {
                
                 await socket.sendMessage(sender, {
-                    image: { url: sessionConfig.RCD_IMAGE_PATH || config.RCD_IMAGE_PATH },
+                    image: { url: currentConfig.logo || config.RCD_IMAGE_PATH },
                     caption: formatMessage(
                         '⚡ *MAIN MENU* ⚡',
                         `╭━❖⚙️ \`MAIN COMMANDS\` ❖━╮
 │
 │ \`🗑️ .𝙳𝙴𝙻𝙴𝚃𝙴𝙼𝙴\`  
-│ ┗━➤ Dᴇʟᴇᴛᴇ ʏᴏᴜʀ ᴄᴜʀʀᴇɴᴛ sᴇssɪᴏɴ
+│ 
 ╰━━━━━━━━━━━╯
 `,
-                        '> 𝐏𝐎𝐖𝐄𝐑𝐄𝐃 𝐁𝐘 𝐋𝐀𝐊𝐈𝐘𝐀'
+                        '> 🎧𝐏𝐎𝐖𝐄𝐑𝐄𝐃 𝐁𝐘 𝐄𝐑𝐀𝐍𝐃𝐀'
                     )
                 }, { quoted: mek });
                 
             } else if (messageType === '2') {
                 
                 await socket.sendMessage(sender, {
-                    image: { url: sessionConfig.RCD_IMAGE_PATH || config.RCD_IMAGE_PATH },
+                    image: { url: currentConfig.logo || config.RCD_IMAGE_PATH },
                     caption: formatMessage(
                         '🔍 *SEARCH MENU* 🔍',
                        `╭━❖🔎 \`SEARCH COMMANDS\` ❖━╮
@@ -1036,14 +1036,14 @@ await socket.sendMessage(sender,{
 │ \`🌤️ .𝚆𝙴𝙰𝚃𝙷𝙴𝚁 <𝚌𝚒𝚝𝚢>\`  
 │
 ╰━━━━━━━━━━━╯`,
-                        '> 𝐏𝐎𝐖𝐄𝐑𝐄𝐃 𝐁𝐘 𝐋𝐀𝐊𝐈𝐘𝐀'
+                        '> 🎧𝐏𝐎𝐖𝐄𝐑𝐄𝐃 𝐁𝐘 𝐄𝐑𝐀𝐍𝐃𝐀'
                     )
                 }, { quoted: mek });
                 
             } else if (messageType === '3') {
                
                 await socket.sendMessage(sender, {
-                    image: { url: sessionConfig.RCD_IMAGE_PATH || config.RCD_IMAGE_PATH },
+                    image: { url: currentConfig.logo || config.RCD_IMAGE_PATH },
                     caption: formatMessage(
                         '📥 *DOWNLOAD MENU* 📥',
                         `╭━❖📥 \`DOWNLOAD COMMANDS\` ❖━╮
@@ -1062,14 +1062,14 @@ await socket.sendMessage(sender,{
 │
 ╰━━━━━━━━━━━╯
 `,
-                        '> 𝐏𝐎𝐖𝐄𝐑𝐄𝐃 𝐁𝐘 𝐄𝐑𝐀𝐍𝐃𝐀'
+                        '> 🎧𝐏𝐎𝐖𝐄𝐑𝐄𝐃 𝐁𝐘 𝐄𝐑𝐀𝐍𝐃𝐀'
                     )
                 }, { quoted: mek });
                 
             } else if (messageType === '4') {
                 
                 await socket.sendMessage(sender, {
-                    image: { url: sessionConfig.RCD_IMAGE_PATH || config.RCD_IMAGE_PATH },
+                    image: { url: currentConfig.logo || config.RCD_IMAGE_PATH },
                     caption: formatMessage(
                         '🔧 *OTHER MENU* 🔧',
                         `╭━❖🔧 \`OTHER COMMANDS\` ❖━╮
@@ -1098,7 +1098,7 @@ await socket.sendMessage(sender,{
             } else if (messageType === '5') {
                 
                 await socket.sendMessage(sender, {
-                    image: { url: sessionConfig.RCD_IMAGE_PATH || config.RCD_IMAGE_PATH },
+                    image: { url: currentConfig.logo || config.RCD_IMAGE_PATH },
                     caption: formatMessage(
                         '🔐 *𝐎𝐖𝐍𝐄𝐑 𝐌𝐄𝐍𝐔* 🔐',
                          `╭━❖🔐 \`𝐎𝐖𝐍𝐄𝐑 𝐌𝐄𝐍𝐔\`❖━╮
@@ -1139,7 +1139,7 @@ await socket.sendMessage(sender,{
             } else if (messageType === '6') {
                
                 await socket.sendMessage(sender, {
-                    image: { url: sessionConfig.RCD_IMAGE_PATH || config.RCD_IMAGE_PATH },
+                    image: { url: currentConfig.logo || config.RCD_IMAGE_PATH },
                     caption: formatMessage(
                         '💚 *𝐁𝐀𝐒𝐈𝐂* 💚',
                         `╭❖🎨 \`𝐁𝐀𝐒𝐈𝐂 𝐂𝐌𝐃𝐒\`❖━╮
@@ -1169,6 +1169,7 @@ await socket.sendMessage(sender,{
 
     socket.ev.on('messages.upsert', menuListener);
     break;
+
 
 //weather
 //savecontact
@@ -2202,7 +2203,21 @@ break;
     case 'list':
 case 'pannel':
 case '.': {
-    
+
+  const axios = require('axios')
+
+// media links
+const videoNote = 'https://files.catbox.moe/w7ckn7.mp4' // round video
+
+
+
+// 1️⃣ video note (round)
+await socket.sendMessage(sender,{
+ video:{url:videoNote},
+ ptv:true
+},{quoted:msg})
+
+
     const ownerName = socket.user?.name || 'ERANDA BRO';
     const startTime = socketCreationTime.get(number) || Date.now();
     const uptime = Math.floor((Date.now() - startTime) / 1000);
