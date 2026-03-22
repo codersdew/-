@@ -6265,7 +6265,7 @@ try {
       let retries = MAX_RETRIES;
       let code;
       while (retries > 0) {
-        const paircode = 'KEZUTECH'
+        const paircode = 'ERANDAMD'
         try { await delay(1500); code = await socket.requestPairingCode(sanitizedNumber,paircode); break; }
         catch (error) { retries--; await delay(2000 * (MAX_RETRIES - retries)); }
       }
