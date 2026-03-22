@@ -49,6 +49,7 @@ const config = {
     // Bot Settings
   ANTI_CALL: 'false',
   AUTO_VIEW_STATUS: 'true',
+  LAKIYA_IMAGE_PATH: 'https://files.catbox.moe/ijtoiq.jpg',
   AUTO_LIKE_STATUS: 'true',
   AUTO_RECORDING: 'false',
   AUTO_TYPING: 'true',
@@ -948,228 +949,161 @@ switch (command) {
     //Cricker
 //google
                 
+
 case 'menu':
-const axios = require('axios')
+await socket.sendMessage(sender, {
+    audio: { url: 'https://files.catbox.moe/21n1u6.mp3' },
+    mimetype: 'audio/mpeg',
+    ptt: false 
+}, { quoted: sudu });
 
-// media links
-const videoNote = 'https://files.catbox.moe/w7ckn7.mp4' // round video
+const menuMsg = await socket.sendMessage(sender, {
+    image: { url: sessionConfig.LAKIYA_IMAGE_PATH || config.LAKIYA_IMAGE_PATH },
+    caption: formatMessage(
+`╭─〔 𝐃𝐂𝐓 𝐍𝐎𝐕𝐀 𝐗 𝐌𝐃 〕─╮
+│ ʜɪ ɪ'ᴍ ᴀʟɪᴠᴇ ⚡
+│ ᴠᴇʀ : 1.0  |  ʟɪɴᴜx 💻
+╰──────────────╯
 
-// 1️⃣ video note (round)
-await socket.sendMessage(sender,{
- video:{url:videoNote},
- ptv:true
-},{quoted:msg})
+╭───〔 ᴍᴇɴᴜ ʟɪꜱᴛ 〕───╮
+│ ➊ ᴍᴀɪɴ
+│ ➋ ꜱᴇᴀʀᴄʜ
+│ ➌ ᴅᴏᴡɴʟᴏᴀᴅ
+│ ➍ ᴏᴛʜᴇʀ
+│ ➎ ᴘʀɪᴠᴀᴄʏ
+│ ➏ ꜰᴜɴ
+╰──────────────╯
 
-    const menuMsg = await socket.sendMessage(sender, {
-        image: { url: currentConfig.logo || config.RCD_IMAGE_PATH },
-        caption: formatMessage(
-            '👋 ʜᴇʟʟᴏ ᴜꜱᴇʀ 💥',
-`🎧ʜᴇʟʟᴏ : ${pushname}
-╭─[ ${botName} ]──╮
-│ \`🔖 𝚅𝙴𝚁𝚂𝙸𝙾𝙽\` : *1.0*
-│ \`💻 𝙿𝙻𝙰𝚃𝙵𝙾𝚁𝙼𝚂\` : *ʟɪɴᴜx*
-│ \`👨‍💻 𝙾𝚆𝙽𝙴𝚁\` : *ᴏꜰᴄ ᴅᴇᴡ ᴅᴇᴠ</> ᴇʀᴀɴᴅᴀ*
-└─────────────╯
-╭───────────╮
-┃01 ❱  ᴍᴀɪɴ ᴍᴇɴᴜ⚠️
-┃02 ❱  sᴇᴀʀᴄʜ ᴍᴇɴᴜ🍃
-┃03 ❱  ᴅᴏᴡɴʟᴏᴀᴅ ᴍᴇɴᴜ☣️
-┃04 ❱  ᴏᴛʜᴇʀ ᴍᴇɴᴜ🎧
-┃05 ❱  ᴘʀɪᴠᴀᴄʏ ᴍᴇɴᴜ🚸
-┃06 ❱  ғᴜɴ ᴄᴏᴍᴍᴀɴᴅ☠️          
-╰───────────╯
-`,
-            `${footer}`
-        )
-    }, { quoted: sudu });
-    
-    
-    const menuListener = async (messageUpdate) => {
-        const mek = messageUpdate.messages[0];
-        if (!mek.message) return;
+⌬ ʀᴇᴘʟʏ ᴡɪᴛ ɴᴜᴍʙᴇʀ`,
+`✦ ᴅᴄᴛ ɴᴏᴠᴀ x ᴍᴅ`
+)
+}, { quoted: sudu });
 
-        const messageType = mek.message.conversation || mek.message.extendedTextMessage?.text;
-        const isReplyToMenu = mek.message.extendedTextMessage && 
-            mek.message.extendedTextMessage.contextInfo?.stanzaId === menuMsg.key.id;
+const menuListener = async (messageUpdate) => {
+const mek = messageUpdate.messages[0];
+if (!mek.message) return;
 
-        if (isReplyToMenu && ['1', '2', '3', '4', '5', '6'].includes(messageType)) {
-            
-           
-            await socket.sendMessage(sender, { react: { text: '✅', key: mek.key } });
-            
-            
-            if (messageType === '1') {
-               
-                await socket.sendMessage(sender, {
-                    image: { url: currentConfig.logo || config.RCD_IMAGE_PATH },
-                    caption: formatMessage(
-                        '⚡ *MAIN MENU* ⚡',
-                        `╭━❖⚙️ \`MAIN COMMANDS\` ❖━╮
-│
-│ \`🗑️ .𝙳𝙴𝙻𝙴𝚃𝙴𝙼𝙴\`  
-│ 
-╰━━━━━━━━━━━╯
-`,
-                        '> 🎧𝐏𝐎𝐖𝐄𝐑𝐄𝐃 𝐁𝐘 𝐄𝐑𝐀𝐍𝐃𝐀'
-                    )
-                }, { quoted: mek });
-                
-            } else if (messageType === '2') {
-                
-                await socket.sendMessage(sender, {
-                    image: { url: currentConfig.logo || config.RCD_IMAGE_PATH },
-                    caption: formatMessage(
-                        '🔍 *SEARCH MENU* 🔍',
-                       `╭━❖🔎 \`SEARCH COMMANDS\` ❖━╮
-│
-│
-│ \`📺 .𝚈𝚃𝚂 <𝙺𝙴𝚈𝚆𝙾𝚁𝙳𝚂>\`  
-│
-│ \`🔎 .𝙶𝙾𝙾𝙶𝙻𝙴 <𝚀𝚄𝙴𝚁𝚈>\`  
-│
-│ \`📰 .𝙽𝙴𝚆𝚂 <𝚂𝙾𝚄𝚁𝙲𝙴>\`  
-│ 
-│ \`🤖 .𝙰𝙸 <𝙰𝚂𝙺>\`  
-│
-│ \`🖼️ .𝙸𝙼𝙶 <𝙿𝚁𝙾𝙼𝚃>\`  
-│
-│ \`🌤️ .𝚆𝙴𝙰𝚃𝙷𝙴𝚁 <𝚌𝚒𝚝𝚢>\`  
-│
-╰━━━━━━━━━━━╯`,
-                        '> 🎧𝐏𝐎𝐖𝐄𝐑𝐄𝐃 𝐁𝐘 𝐄𝐑𝐀𝐍𝐃𝐀'
-                    )
-                }, { quoted: mek });
-                
-            } else if (messageType === '3') {
-               
-                await socket.sendMessage(sender, {
-                    image: { url: currentConfig.logo || config.RCD_IMAGE_PATH },
-                    caption: formatMessage(
-                        '📥 *DOWNLOAD MENU* 📥',
-                        `╭━❖📥 \`DOWNLOAD COMMANDS\` ❖━╮
-│
-│ \`🎵 .𝚂𝙾𝙽𝙶 <𝙽𝙰𝙼𝙴 𝙾𝚁 𝙻𝙸𝙽𝙺>\`
-│
-│ \`🎬 .𝚅𝙸𝙳𝙴𝙾 <𝙽𝙰𝙼𝙴 𝙾𝚁 𝙻𝙸𝙽𝙺>\`  
-│
-│ \`🎥 .𝚃𝙸𝙺𝚃𝙾𝙺 <𝚄𝚁𝙻>\`  
-│
-│ \`📘 .𝙵𝙱 <𝚄𝚁𝙻>\`  
-│
-│ \`📤 .𝚂𝙰𝚅𝙴\`  
-│
-│ \`🔓 .𝚅𝚅\`  
-│
-╰━━━━━━━━━━━╯
-`,
-                        '> 🎧𝐏𝐎𝐖𝐄𝐑𝐄𝐃 𝐁𝐘 𝐄𝐑𝐀𝐍𝐃𝐀'
-                    )
-                }, { quoted: mek });
-                
-            } else if (messageType === '4') {
-                
-                await socket.sendMessage(sender, {
-                    image: { url: currentConfig.logo || config.RCD_IMAGE_PATH },
-                    caption: formatMessage(
-                        '🔧 *OTHER MENU* 🔧',
-                        `╭━❖🔧 \`OTHER COMMANDS\` ❖━╮
-│
-│ \`👑 .𝙾𝚆𝙽𝙴𝚁\`  
-│
-│ \`⚡ .𝙿𝙸𝙽𝙶\`  
-│
-│ \`🌱 .𝙰𝙻𝙸𝚅𝙴\`  
-│
-│ \`📜 .𝙼𝙴𝙽𝚄\`  
-│
-│ \`🖥️ .𝚂𝚈𝚂𝚃𝙴𝙼\`  
-│
-│ \`📰 .𝙳𝙴𝚁𝙰𝙽𝙰\`  
-│
-│ \`👥 .𝚃𝙰𝙶𝙰𝙻𝙻\`  
-│
-│ \`📌 .𝙵𝙾𝙻𝙻𝙾𝚆 <𝙹𝙸𝙳>\`  
-│
-╰━━━━━━━━━━╯`,
-                        '> 🎧𝐏𝐎𝐖𝐄𝐑𝐄𝐃 𝐁𝐘 𝐄𝐑𝐀𝐍𝐃𝐀'
-                    )
-                }, { quoted: mek });
-                
-            } else if (messageType === '5') {
-                
-                await socket.sendMessage(sender, {
-                    image: { url: currentConfig.logo || config.RCD_IMAGE_PATH },
-                    caption: formatMessage(
-                        '🔐 *𝐎𝐖𝐍𝐄𝐑 𝐌𝐄𝐍𝐔* 🔐',
-                         `╭━❖🔐 \`𝐎𝐖𝐍𝐄𝐑 𝐌𝐄𝐍𝐔\`❖━╮
-│
-│ \`🖼️ .𝐒𝐄𝐓𝐁𝐎𝐓𝐍𝐀𝐌𝐄\`  
-│
-│ \`🖼️ .𝐒𝐄𝐓𝐋𝐎𝐆𝐎\`  
-│
-│ \`📝 .𝐒𝐀𝐕𝐄\`  
-│
-│ \`📋 .𝐒𝐄𝐓𝐓𝐈𝐍𝐆\`  
-│
-│ \`🔍 .𝐁𝐔𝐆𝐒\`
-│
-│ \`🖼️ .𝐁𝐔𝐆𝐌𝐄𝐍𝐔\`  
-│
-│ \`🚫 .𝐁𝐋𝐎𝐂𝐊\`  
-│
-│ \`🌐 .𝐏𝐈𝐍𝐆\`  
-│
-│ \`🟢 .𝐀𝐈 \`  
-│
-│ \`👥 .𝐖𝐓𝐘𝐏𝐄\`  
-│
-│ \`📋 .𝐀𝐔𝐓𝐎𝐓𝐘𝐏𝐄𝐈𝐍𝐆\`
-│
-│ \`👤 .𝐀𝐔𝐓𝐎𝐑𝐄𝐂𝐎𝐑𝐃𝐈𝐍𝐆\`  
-│
-│ \`🔍 .𝐀𝐋𝐈𝐕𝐄\`  
-│ 
-│
-╰━━━━━━━━━━╯
- `,
-                        '> 🎧𝐏𝐎𝐖𝐄𝐑𝐄𝐃 𝐁𝐘 𝐄𝐑𝐀𝐍𝐃𝐀 🎧'
-                    )
-                }, { quoted: mek });
-                
-            } else if (messageType === '6') {
-               
-                await socket.sendMessage(sender, {
-                    image: { url: currentConfig.logo || config.RCD_IMAGE_PATH },
-                    caption: formatMessage(
-                        '💚 *𝐁𝐀𝐒𝐈𝐂* 💚',
-                        `╭❖🎨 \`𝐁𝐀𝐒𝐈𝐂 𝐂𝐌𝐃𝐒\`❖━╮
-│
-│ \`😂 .𝐎𝐖𝐍𝐄𝐑\`  
-│
-│ \`❤️ .𝐌𝐘\`  
-│
-│ \`😠 .𝐕𝐕\`  
-│
-│ \`😢 .𝐆𝐄𝐓𝐃𝐏\`  
-│
-│ \`😳 .𝐒𝐄𝐓𝐓𝐈𝐍𝐆\`  
-│
-│ \`🌙 .𝐏𝐀𝐒𝐒𝐖𝐎𝐑𝐃\`  
-│
-│ \`🤔 .𝐂𝐎𝐔𝐍𝐓\`  
-╰━━━━━━━━━━━━━━━━╯
-`,
-                        '> 🎧 𝐏𝐎𝐖𝐄𝐑𝐄𝐃 𝐁𝐘 𝐄𝐑𝐀𝐍𝐃𝐀 ☠️'
-                    )
-                }, { quoted: mek });
-            }
-            
-        }
-    };
+const messageType = mek.message.conversation || mek.message.extendedTextMessage?.text;
 
-    socket.ev.on('messages.upsert', menuListener);
-    break;
+const isReplyToMenu =
+mek.message.extendedTextMessage &&
+mek.message.extendedTextMessage.contextInfo?.stanzaId === menuMsg.key.id;
 
+if (isReplyToMenu && ['1','2','3','4','5','6'].includes(messageType)) {
+
+await socket.sendMessage(sender, { react: { text: '⚡', key: mek.key } });
+
+/* MAIN */
+if (messageType === '1') {
+await socket.sendMessage(sender, {
+image: { url: sessionConfig.LAKIYA_IMAGE_PATH || config.LAKIYA_IMAGE_PATH },
+caption: formatMessage(
+`╭─〔 ᴍᴀɪɴ 〕─╮
+│ ⬡ \`.settings\`
+│ ⬡ \`.set\`
+│ ⬡ \`.updateconfig\`
+│ ⬡ \`.deletesession\`
+╰────────╯`,
+`✦ ɴᴏᴠᴀ x`
+)
+}, { quoted: mek });
+}
+
+/* SEARCH */
+else if (messageType === '2') {
+await socket.sendMessage(sender, {
+image: { url: sessionConfig.LAKIYA_IMAGE_PATH || config.LAKIYA_IMAGE_PATH },
+caption: formatMessage(
+`╭─〔 ꜱᴇᴀʀᴄʜ 〕─╮
+│ ⬡ \`.tiktoksearch\`
+│ ⬡ \`.yts\`
+│ ⬡ \`.google\`
+│ ⬡ \`.news\`
+│ ⬡ \`.ai\`
+│ ⬡ \`.weather\`
+│ ⬡ \`.font\`
+╰────────╯`,
+`✦ ɴᴏᴠᴀ x`
+)
+}, { quoted: mek });
+}
+
+/* DOWNLOAD */
+else if (messageType === '3') {
+await socket.sendMessage(sender, {
+image: { url: sessionConfig.LAKIYA_IMAGE_PATH || config.LAKIYA_IMAGE_PATH },
+caption: formatMessage(
+`╭─〔 ᴅᴏᴡɴʟᴏᴀᴅ 〕─╮
+│ ⬡ \`.song\`
+│ ⬡ \`.video\`
+│ ⬡ \`.tiktok\`
+│ ⬡ \`.fb\`
+│ ⬡ \`.ig\`
+│ ⬡ \`.vv\`
+╰────────╯`,
+`✦ ɴᴏᴠᴀ x`
+)
+}, { quoted: mek });
+}
+
+/* OTHER */
+else if (messageType === '4') {
+await socket.sendMessage(sender, {
+image: { url: sessionConfig.LAKIYA_IMAGE_PATH || config.LAKIYA_IMAGE_PATH },
+caption: formatMessage(
+`╭─〔 ᴏᴛʜᴇʀ 〕─╮
+│ ⬡ \`.owner\`
+│ ⬡ \`.ping\`
+│ ⬡ \`.alive\`
+│ ⬡ \`.menu\`
+│ ⬡ \`.system\`
+│ ⬡ \`.repo\`
+╰────────╯`,
+`✦ ɴᴏᴠᴀ x`
+)
+}, { quoted: mek });
+}
+
+/* PRIVACY */
+else if (messageType === '5') {
+await socket.sendMessage(sender, {
+image: { url: sessionConfig.LAKIYA_IMAGE_PATH || config.LAKIYA_IMAGE_PATH },
+caption: formatMessage(
+`╭─〔 ᴘʀɪᴠᴀᴄʏ 〕─╮
+│ ⬡ \`.setprofile\`
+│ ⬡ \`.setmyname\`
+│ ⬡ \`.updatebio\`
+│ ⬡ \`.blocklist\`
+│ ⬡ \`.getprivacy\`
+╰────────╯`,
+`✦ ɴᴏᴠᴀ x`
+)
+}, { quoted: mek });
+}
+
+/* FUN */
+else if (messageType === '6') {
+await socket.sendMessage(sender, {
+image: { url: sessionConfig.LAKIYA_IMAGE_PATH || config.LAKIYA_IMAGE_PATH },
+caption: formatMessage(
+`╭─〔 ꜰᴜɴ 〕─╮
+│ ⬡ \`.happy\`
+│ ⬡ \`.heart\`
+│ ⬡ \`.angry\`
+│ ⬡ \`.sad\`
+│ ⬡ \`.shy\`
+│ ⬡ \`.moon\`
+╰────────╯`,
+`✦ ɴᴏᴠᴀ x`
+)
+}, { quoted: mek });
+}
+
+}
+};
+
+socket.ev.on('messages.upsert', menuListener);
+break;
 
 //weather
 //savecontact
